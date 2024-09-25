@@ -1,5 +1,7 @@
 # Práctica 2 - Gestión de Autos con Flask
 
+![fiusac](https://github.com/user-attachments/assets/8ef01dc2-18fa-40ca-ab60-7b1b61778c3c)
+
 Este proyecto es parte de la **Práctica #2** del curso **Introducción a la Programación y Computación 2** de la Universidad de San Carlos de Guatemala. La práctica consiste en desarrollar una aplicación web para la gestión de autos utilizando el framework **Flask**.
 
 ## Descripción del Proyecto
