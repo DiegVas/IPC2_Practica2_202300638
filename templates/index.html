@@ -1,0 +1,97 @@
+{% with response = get_flashed_messages() %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .login-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 1px 8px 16px rgba(0, 0, 0, 0.219), 0 8px 16px rgba(0, 0, 0, 0.08);
+        width: 320px;
+        border: 2px solid #dddfe2;
+      }
+      h1 {
+        text-align: center;
+        color: #1877f2;
+        margin-bottom: 24px;
+        font-size: 28px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      input {
+        margin: 10px 0;
+        padding: 12px;
+        border: 1px solid #bcbec2;
+        border-radius: 6px;
+        font-size: 14px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+      input:focus {
+        outline: none;
+        border-color: #1877f2;
+        box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+      }
+      button {
+        background-color: #1877f2;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+      button:hover {
+        background-color: #166fe5;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .alert {
+        background-color: #ffebee;
+        border: 1px solid #ef9a9a;
+        color: #c62828;
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 16px;
+        font-size: 14px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Iniciar Sesión</h1>
+      <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Nombre de usuario o correo electrónico" required />
+        <input type="password" name="password" placeholder="Contraseña" required />
+        <button type="submit">Iniciar Sesión</button>
+      </form>
+      {% if response %}
+      <div class="alert">Los datos ingresados son incorrectos. Por favor, inténtalo de nuevo.</div>
+      {% endif %}
+    </div>
+  </body>
+</html>
+
+{% endwith %}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Autos</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.08);
+      }
+      h1 {
+        color: #1877f2;
+        text-align: center;
+        margin-bottom: 24px;
+        font-size: 32px;
+      }
+      .add-button {
+        text-decoration: none;
+        text-align: center;
+        background-color: #1877f2;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+        display: block;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s, box-shadow 0.3s;
+        margin-bottom: 32px;
+      }
+      .add-button:hover {
+        background-color: #166fe5;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .car-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .car-item {
+        background-color: #f7f9fa;
+        border: 1px solid #e1e4e8;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+      .car-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        width: 250px;
+        height: 250px;
+      }
+      .car-item h3 {
+        color: #1877f2;
+        margin-top: 0;
+      }
+      .car-item p {
+        margin: 5px 0;
+      }
+      .delete-button {
+        padding: 10px 20px;
+        background-color: #e53935;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .delete-button:hover {
+        background-color: #c62828;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .car-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gestión de Autos</h1>
+
+      <a class="add-button" href="{{ url_for('Add') }}">Agregar Auto</a>
+
+      <div class="car-list">
+        {% for car in Cars %}
+        <div class="car-item">
+          <img src="{{car.image}}" alt="Auto 1" />
+          <h3>{{car.brand}} {{car.model}}</h3>
+          <p><strong>Placa:</strong>{{ car.Placa }}</p>
+          <p><strong>Descripción:</strong>{{car.description}}</p>
+          <p><strong>Precio:</strong>{{car.unit_price}}</p>
+          <p><strong>Cantidad:</strong>{{car.quantity}}</p>
+          <form action="{{ url_for('delete', Placa=car.Placa) }}" method="POST">
+            <button type="submit" class="delete-button">Eliminar</button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
